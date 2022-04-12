@@ -1,1 +1,6 @@
-class Solution{public:int mySqrt(int x){return(int)sqrt(x);}};
+class Solution {
+public:
+    int mySqrt(int x) {
+	return (int)sqrt(x);
+    }
+};
