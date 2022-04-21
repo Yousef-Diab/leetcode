@@ -1,7 +1,8 @@
 class MyHashSet {
 public:
-    bool set[1000001] = { false };
+    vector<bool> set;
     MyHashSet() {
+        set.resize(1e6+1,false);
     }
     
     void add(int key) {
