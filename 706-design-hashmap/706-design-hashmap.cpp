@@ -1,8 +1,8 @@
 class MyHashMap {
 public:
-    vector<int>v;
+    int v[1000001];
     MyHashMap() {
-        v.resize(1000001,-1);
+        fill_n(v,1000001,-1);
     }
     
     void put(int key, int value) {
@@ -10,7 +10,7 @@ public:
     }
     
     int get(int key) {
-        return v[key]>=0?v[key]:-1;
+        return v[key];
     }
     
     void remove(int key) {
