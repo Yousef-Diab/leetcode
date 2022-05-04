@@ -21,10 +21,7 @@ public:
                 continue;
             }
             prev=curr;
-            if(curr)
-            curr=curr->next;
-            else break;
-            
+            if(!curr->next)break;            
         }
         return head;
     }
