@@ -1,45 +1,25 @@
 class MyQueue {
+    stack<int> input, output;
 public:
-    stack<int>s;
-    int count;
-    MyQueue() {
-        count=0;
-    }
-    
+
     void push(int x) {
-        vector<int>v(count);
-        for(int i=0;i<count;i++){
-            v[i]=s.top();
-            s.pop();
-        }
-        s.push(x);
-        for(int i=count-1;i>=0;i--){
-            s.push(v[i]);
-        }
-        count++;
+        input.push(x);
     }
-    
+
     int pop() {
-        int temp=s.top();
-        s.pop();
-        count--;
+        int temp=peek();
+        output.pop();
         return temp;
     }
-    
+
     int peek() {
-        return s.top();
+        if (output.empty())
+            while (input.size())
+                output.push(input.top()), input.pop();
+        return output.top();
     }
-    
-    bool empty() {
-        return count==0;
+
+    bool empty(void) {
+        return input.empty() && output.empty();
     }
 };
-
-/**
- * Your MyQueue object will be instantiated and called as such:
- * MyQueue* obj = new MyQueue();
- * obj->push(x);
- * int param_2 = obj->pop();
- * int param_3 = obj->peek();
- * bool param_4 = obj->empty();
- */
