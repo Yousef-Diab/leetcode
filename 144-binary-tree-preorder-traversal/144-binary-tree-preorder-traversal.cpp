@@ -12,28 +12,27 @@
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
-        if (!root) {
-            return {};
-        }
-        
-        std::stack<TreeNode*> st;
-        std::vector<int> res;
-        
-        st.push(root);
-        
-        while(!st.empty()) {
-            root = st.top(); st.pop(); 
-            res.push_back(root->val);
-            
-            if (root->right) {
-                st.push(root->right);
+    vector<int> v;
+    if(!root) return v;
+    TreeNode* temp = root, *prev;
+    while(temp){
+        if(!temp->left){
+            v.push_back(temp->val);
+            temp = temp->right;
+        }else{
+            prev = temp->left;
+            while(prev->right&&(prev->right != temp))
+                prev = prev->right;
+            if(!prev->right){
+                v.push_back(temp->val);
+                prev->right = temp;
+                temp = temp->left;
+            }else{
+                prev->right = NULL;
+                temp = temp->right;
             }
-            
-            if (root->left) {
-                st.push(root->left);
-            }
         }
-        
-        return res;
     }
+        return v;
+}
 };
