@@ -12,16 +12,20 @@
 class Solution {
 public:
     unordered_map<int,bool>mp;
-    int ok=false;
-    void inOrder(TreeNode*root,int k){
-        if(!root)return;
-        inOrder(root->left,k);
-        mp[root->val]=true;
-        if(mp[k-root->val]==true&&root->val!=k-root->val)ok=true;
-        inOrder(root->right,k);
-    }
     bool findTarget(TreeNode* root, int k) {
-        inOrder(root,k);
-        return ok;
+        if(!root)return false;
+        if(mp[k-root->val]&&root->val!=k-root->val)return true;
+        mp[root->val]=true;
+        return findTarget(root->right,k)||findTarget(root->left,k);
     }
 };
+
+
+// // int ok=false;
+//     void inOrder(TreeNode*root,int k){
+//         if(!root)return;
+//         inOrder(root->left,k);
+//         mp[root->val]=true;
+//         if(mp[k-root->val]==true&&root->val!=k-root->val)ok=true;
+//         inOrder(root->right,k);
+//     }
