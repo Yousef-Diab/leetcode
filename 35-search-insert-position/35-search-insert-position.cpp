@@ -1,11 +1,9 @@
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
-        int m(0),l,h;
-	h = nums.size() - 1;
-	l = 0;
+        int m=0,l=0,h=nums.size() - 1;
 	while (l <= h) {
-		m = (h + l) / 2;
+		m = (h + l)/2;
 		if (nums[m] == target) return m;
 		else if (nums[m] > target) h = m - 1;
 		else if (nums[m] < target) l = m + 1;
