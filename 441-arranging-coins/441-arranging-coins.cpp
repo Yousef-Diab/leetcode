@@ -1,25 +1,6 @@
 class Solution {
 public:
-    
-    bool valid(long long int row, long long int coinsHave){
-        long long int coinsNeeded = (row * (row+1))/2;
-        return coinsNeeded <= coinsHave;
-    }
-    
     int arrangeCoins(int n) {
-        long long int low{}, high = 65536;
-        int res{};
-        
-        while(low <= high){
-            
-            int mid = low + (high-low)/2;
-            if(valid(mid, n)){
-                res = mid;
-                low = mid+1;
-            }
-            else high = mid-1;
-        }
-        
-        return res;
+        return floor(-0.5+sqrt((double)2*n+0.25));
     }
 };
