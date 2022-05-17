@@ -1,15 +1,25 @@
 class Solution {
 public:
+    
+    bool valid(long long int row, long long int coinsHave){
+        long long int coinsNeeded = (row * (row+1))/2;
+        return coinsNeeded <= coinsHave;
+    }
+    
     int arrangeCoins(int n) {
-       int cnt=0;
-        long long t=n;
-        long long i=1;
-        int res=-1;
-        if(n==1)return 1;
-        while(t>=0){
-            res++;
-            t-=i++;
+        long long int low{}, high = 65536;
+        int res{};
+        
+        while(low <= high){
+            
+            int mid = low + (high-low)/2;
+            if(valid(mid, n)){
+                res = mid;
+                low = mid+1;
+            }
+            else high = mid-1;
         }
+        
         return res;
     }
 };
