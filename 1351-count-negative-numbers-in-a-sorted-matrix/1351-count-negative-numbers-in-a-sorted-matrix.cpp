@@ -1,19 +1,24 @@
 class Solution {
 public:
     int countNegatives(vector<vector<int>>& grid) {
-        int res=0,m=grid.size(),n=grid[0].size();
-        int i,j;
-        bool found=false;
-        for(i=0;i<m;i++){
-            found =false;
-        for(j=n-1;j>=0;j--){
-            if(grid[i][j]>=0){
-                res+=n-1-j;
-                found=true;
-                break;
-                }
+        int rows = grid.size(), cols = grid[0].size(); 
+        int res = 0, lastNeg = cols - 1;
+        for (int row = 0; row < rows; row++) {
+            if (grid[row][0] < 0) {
+                res+=cols;
+                continue;
             }
-            if(!found)res+=n;
+            if (grid[row][cols - 1] > 0)
+                continue;
+            int l = 0, r = lastNeg;
+            while (l <= r) {
+                int m = l + (r - l)/2;
+                if (grid[row][m] < 0) {
+                    r = m - 1;
+                } else
+                    l = m + 1;
+            }
+            res += (cols - l); lastNeg = l;
         }
         return res;
     }
