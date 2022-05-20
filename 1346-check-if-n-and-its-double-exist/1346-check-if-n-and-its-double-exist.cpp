@@ -2,10 +2,10 @@ class Solution {
 public:
     bool checkIfExist(vector<int>& arr) {
         unordered_map<int,bool>mp;
-        int zs=0;
-        for(int n:arr){mp[n]=true;if(n==0)zs++;}
-        if(zs>=2)return true;
-        for(int n:arr)if(mp[2*n]==true&&n!=0)return true;
+        for(int n:arr){
+            if(mp.find(2*n)!=mp.end()||n%2==0&&mp.find(n/2)!=mp.end())return true;
+            mp[n]=true;
+        }
         return false;
     }
 };
